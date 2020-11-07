@@ -2,7 +2,8 @@ pipeline {
   agent {
     node {
       label 'quarkus-java' 
-      stages {
+      stage('build') {
+        echo 'hello'
       }
         }
       }
