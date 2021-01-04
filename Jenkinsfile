@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
+                bat 'mvn -Dmaven.test.failure.ignore=true install'
             }
             post {
                 success {
