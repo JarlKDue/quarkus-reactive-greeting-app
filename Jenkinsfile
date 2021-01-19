@@ -1,12 +1,17 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
     tools {
         maven 'Maven 3.6.3'
     }
     stages {
         stage('Build') {
             steps {
-                bat 'gradlew build'
+                sh 'gradlew build'
             }
             post {
                 success {
@@ -17,7 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                bat 'docker -v'
+                sh 'docker -v'
             }
         }
         stage('Deploy') {
