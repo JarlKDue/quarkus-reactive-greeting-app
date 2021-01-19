@@ -17,6 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                bat 'docker -v'
             }
         }
         stage('Deploy') {
