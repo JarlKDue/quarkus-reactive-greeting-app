@@ -45,5 +45,12 @@ pipeline {
                 sh 'docker build -t jkd/quarkus-reactive-greeting .'
             }
         }
+        stage('Remove Old Image'){
+            steps{
+                sh 'docker stop jkd/quarkus-reactive-greeting'
+                sh 'docker remove jkd/quarkus-reactive-greeting'
+        }
+            stage('Deploy New Image'){
+                sh 'docker run -d -å 8083:8080 jkd/quarkus-reactive-greeting'
     }
 }
