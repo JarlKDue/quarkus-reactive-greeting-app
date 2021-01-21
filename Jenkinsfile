@@ -3,13 +3,7 @@ pipeline {
             registry = "test"
             registryCredential = "test"
     }
-    agent {
-        docker {
-            image 'openjdk:11'
-            args '-v "$PWD":/app'
-            reuseNode true
-        }
-    }
+    agent any
     
     stages {
         stage("Parallel Testing"){
