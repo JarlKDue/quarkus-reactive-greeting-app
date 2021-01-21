@@ -4,7 +4,11 @@ pipeline {
             registryCredential = "test"
     }
     agent {
-          docker { image 'maven:latest' }
+        docker {
+            image 'openjdk:11'
+            args '-v "$PWD":/app'
+            reuseNode true
+        }
     }
     
     stages {
@@ -13,7 +17,7 @@ pipeline {
                 stage('Build') {
                     steps {
                         sleep 5
-                        sh 'mvn -v'
+                        sh './gradlew clean build'
                     }
                 }
                 stage('Unit Test') {
@@ -43,7 +47,6 @@ pipeline {
             }
         }
         stage('Build Docker Image'){
-                agent any
             steps{
                 sh 'docker --version'
             }
