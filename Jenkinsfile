@@ -45,15 +45,10 @@ pipeline {
                 sh 'docker build -t jkd/quarkus-reactive-greeting .'
             }
         }
-        stage('Remove Old Image'){
+        stage('Push Image to Docker Hub'){
             steps{
-                sh "docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=jkd/quarkus-reactive-greeting --format='{{.ID}}'))"
+                echo 'Just Kidding'
             }
-        }
-            stage('Deploy New Image'){
-                steps{
-                sh 'docker run -d -p 8083:8080 jkd/quarkus-reactive-greeting'
-                }
         }
     }
 }
