@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Remove Old Image'){
             steps{
-                sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=jkd/quarkus-reactive-greeting --format="{{.ID}}"))'
+                sh "docker rm $(docker stop $(docker ps -a -q --filter ancestor=jkd/quarkus-reactive-greeting --format='{{.ID}}'))"
             }
         }
             stage('Deploy New Image'){
